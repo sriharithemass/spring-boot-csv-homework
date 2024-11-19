@@ -4,13 +4,6 @@ import jakarta.validation.*;
 
 public class ValidMarkValidator implements ConstraintValidator<ValidMark, Integer> {
 
-    private int passMark;
-
-    @Override
-    public void initialize(ValidMark validMark) {
-        this.passMark = validMark.value();
-    }
-
     @Override
     public boolean isValid(Integer score, ConstraintValidatorContext context) {
         if(score == null || score < 0 || score > 100)

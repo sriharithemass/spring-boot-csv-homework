@@ -118,7 +118,7 @@ public class CsvService {
     }
 
     private boolean overwriteCsv(List<Student> students) {
-        try (CSVWriter csvWriter = new CSVWriter(new FileWriter(FILE_NAME))) {
+        try (CSVWriter csvWriter = (CSVWriter) new CSVWriterBuilder(new FileWriter(FILE_NAME)).withQuoteChar(CSVWriter.NO_QUOTE_CHARACTER).build()) {
             csvWriter.writeNext(new String[]{"ID","Name", "Department", "TotalScore"});
             for (Student student : students) {
                 csvWriter.writeNext(new String[]{String.valueOf(student.getId()),student.getName(), student.getDepartment(), String.valueOf(student.getTotalScore())});
